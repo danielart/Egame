@@ -280,6 +280,9 @@ _:-ms-input-placeholder, :root .demo-graph {
     overflow: hidden;
 }
 
+
+
+/** css for plane div **/
 .location {
     float:left;
 }
@@ -289,6 +292,10 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 @media (min-width:320px) {
     #box2 {
+        -ms-transform: rotate(90deg); /* IE 9 */
+        -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+        transform: rotate(90deg);
+
         position: absolute;
         left: 100px;
         -webkit-transition: 2s ease-in-out;
@@ -303,8 +310,12 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 @media (min-width:961px) {
     #box2 {
-        position: absolute;
-        left: 150px;
+
+        -ms-transform: rotate(90deg); /* IE 9 */
+        -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+        transform: rotate(90deg);
+
+        position: relative;
         -webkit-transition: 2s ease-in-out;
         -moz-transition: 2s ease-in-out;
         -o-transition: 2s ease-in-out;
@@ -314,4 +325,8 @@ _:-ms-input-placeholder, :root .demo-graph {
     .location:hover + #box2 {
         left: calc(100% - 200px);
     }
+}
+
+#planeAnimation{
+    max-height: 100px;
 }
