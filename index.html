@@ -111,7 +111,7 @@
             <img src="images/user.jpg" class="demo-avatar">
 
             <div class="demo-avatar-dropdown">
-                <span>usuario@gmail.com</span>
+                <span id="userNameSpan">usuario@gmail.com</span>
 
                 <div class="mdl-layout-spacer"></div>
                 <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
@@ -141,48 +141,86 @@
     <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid demo-content">
             <div id="homeDiv" class="sectionDiv  mdl-cell--12-col mdl-grid mdl-cell--12-col-tablet">
-                <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                <div id="loginDiv" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-offset-desktop mdl-cell--7-col  mdl-cell--0-offset-tablet mdl-cell--12-col-tablet">
                     <div class="mdl-card__title mdl-card--expand">
-                        <h2 class="mdl-card__title-text"><img src="images/android-desktop.png" class="logo-gco">Egame Test Game</h2>
+                        <h2 class="mdl-card__title-text">Inicio de sesión</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aenan convallis.
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label  mdl-cell--12-col mdl-cell--12-col-tablet">
+                            <label class="mdl-button mdl-js-button mdl-button--icon" for="user-expandable">
+                                <i class="material-icons" style="color:#DC0028;">account_circle</i>
+                            </label>
+                            <div class="mdl-textfield__expandable-holder">
+                                <input class="mdl-textfield__input" type="text" id="user-expandable">
+                                <label class="mdl-textfield__label" for="user-expandable">
+                                    Usuario
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label  mdl-cell--12-col mdl-cell--12-col-tablet">
+                            <label class="mdl-button mdl-js-button mdl-button--icon" for="pass-expandable">
+                                <i class="material-icons" style="color:#DC0028;">lock_open</i>
+                            </label>
+                            <div class="mdl-textfield__expandable-holder">
+                                <input class="mdl-textfield__input" type="password" id="pass-expandable">
+                                <label class="mdl-textfield__label" for="pass-expandable">
+                                    Contraseña
+                                </label>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" id="goTestButton">
-                            Empezar test
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect mdl-cell--4-offset mdl-cell--4-col mdl-cell--4-col-tablet" id="loginButton">
+                            Iniciar sesión
                         </button>
                     </div>
                 </div>
-                <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                    <div class="mdl-card__title mdl-card--expand">
-                        <h2 class="mdl-card__title-text">Mis estadisticas</h2>
+                <div id="startDiv" style="display: none;">
+                    <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                        <div class="mdl-card__title mdl-card--expand">
+                            <h2 class="mdl-card__title-text"><img src="images/logo.png" class="logo-gco">Egame Test Game</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Con Egame podrás formarte de manera rápida y sencilla, con un divertido juego de test que te permitirán ir avanzando de nivel y dificultad. ¿Quieres probar?
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" id="goTestButton">
+                                Empezar
+                            </button>
+                        </div>
                     </div>
-                    <div class="mdl-card__supporting-text">
-                        <ul>
-                            <li>Ultimo test realizado: 20/02/2016 16:23</li>
-                            <li>Número de tests fallados: 25</li>
-                            <li>Numero de test superados:37</li>
-                            <li>Preguntas falladas: 36</li>
-                            <li>Tiempo promedio de test: 5:35 s</li>
-                        </ul>
-                    </div>
+                    <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                        <div class="mdl-card__title mdl-card--expand">
+                            <h2 class="mdl-card__title-text">Mis estadisticas</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            <ul>
+                                <li>Último test realizado: <span id="lastDateSpan"> 20/02/2016 16:23</span></li>
+                                <li>Número de tests fallados:<span id="failedTestsSpan"> 25 </span></li>
+                                <li>Número de test superados:<span id="successTestsSpan"> 37 </span></li>
+                                <li>Preguntas falladas:<span id="failedQuestionsSpan"> 36 </span></li>
+                                <li>Preguntas acertadas:<span id="successQuestionsSpan"> 36 </span></li>
+                                <li>Tiempo promedio de test:<span id="averageTimeSpan"> 5:35 </span></li>
+                            </ul>
+                        </div>
 
+                    </div>
                 </div>
             </div>
 
             <div id="testDiv" class="sectionDiv  mdl-cell--12-col mdl-grid mdl-cell--12-col-tablet">
                 <div class="startTestDiv demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid mdl-cell--12-col-tablet">
                     <div class="mdl-card__title mdl-card--expand">
-                        <h3 class="mdl-card__title-text">Nivel 1</h3>
+                        <h3 class="mdl-card__title-text">Nivel <span id="lvlNumberSpan" class="levelNumber">1</span></h3>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        Tendrás que superar 3 tests para poder llegar al segundo nivel.
+                        Estas a 1 test de pasar al siguiente nivel. Para ello deberás superar un mínimo de 8 preguntas. ¿Empezamos?
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" id="startTestButton">
-                            Empezar
+                            Empezar Test
                         </button>
                     </div>
                 </div>
@@ -191,9 +229,9 @@
                         <h2 class="mdl-card__title-text">Test 1</h2>
                     </div>
                     <div class="mdl-card__supporting-text mdl-grid">
-                        <div id="test1">
-                            <p clas="mdl-cell--3-col" >Tiempo: <span class="mdl-cell--2-offset mdl-cell--3-col" id="timerDiv"></span></p>
-                            <div id="quiz"></div>
+                        <div id="test1" class="mdl-cell mdl-cell--12-col mdl-grid mdl-cell--12-col-tablet">
+                            <p class="mdl-cell--5-col" >Tiempo: <span class="mdl-cell--2-offset mdl-cell--5-col" id="timerDiv"></span></p>
+                            <div id="quiz" class="mdl-cell mdl-cell--12-col mdl-grid mdl-cell--12-col-tablet"></div>
 
 
                         </div>
@@ -334,44 +372,7 @@
 
 <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
 <script src="js/jsonQuiz.js"></script>
-<script>
-    var dialog = document.querySelector('dialog');
-    var showDialogButton = document.querySelector('#show-dialog');
-    if (!dialog.showModal) {
-        dialogPolyfill.registerDialog(dialog);
-    }
-    showDialogButton.addEventListener('click', function () {
-        dialog.showModal();
-    });
-    dialog.querySelector('.close').addEventListener('click', function () {
-        dialog.close();
-    });
-</script>
-<script>
-    $("#rankingButton").click(function () {
-        $(".sectionDiv").hide();
-        $("#rankingDiv").show();
-    });
-
-    $("#goTestButton").click(function () {
-        $(".sectionDiv").hide();
-        $("#testDiv").show();
-
-    });
-
-    $("#homeButton").click(function () {
-        $(".sectionDiv").hide();
-        $("#homeDiv").show();
-    });
-
-    $("#startTestButton").click(function () {
-        /** timer rules and functions **/
-        $(".startTestDiv").hide();
-        $("#test1Div").show();
-        $('#timerDiv').timer();
-    });
-
-
-</script>
+<script src="js/buttonsFunctions.js"></script>
+<script src="js/querySelectorFunctions.js"></script>
 </body>
 </html>

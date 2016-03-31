@@ -128,6 +128,8 @@
             var _result = [];
 	        $("#timerDiv").timer('pause');
             // result html after test result
+
+            _result.push('<div id="" class="mdl-cell--12-col mdl-cell--12-col-tablet">');
             _result.push('<h3> Test finalizado </h3>');
             _result.push('<h4>' + message.title + '</h4>');
             _result.push('<p>' + message.description + '</p>');
@@ -135,7 +137,7 @@
             _result.push('<p>Puntuación: ' + score + '</p>');
             _result.push('<p>Tiempo: ' + $("#timerDiv").text() + '</p>');
             _result.push('<p>Total de preguntas: ' + questionCount + '</p>');
-
+            _result.push('</div>');
             return _result.join('\n');
         };
 
@@ -167,24 +169,25 @@
         // question rendering
         var questionHTML = function (questionStr, $answers) {
 
-            var _form = ['<form id="quizForm">'];
-            var _question = '<p>' + questionStr + '</p>';
+            var _form = ['<form id="quizForm" class="mdl-cell mdl-cell--12-col mdl-grid mdl-cell--12-col-tablet">'];
+            var _question = '<div id="questionDiv" class="mdl-cell--12-col mdl-grid mdl-cell--12-col-tablet"><p>' + questionStr + '</p></div>';
             var _buttonTxt = 'next';
             if(questionCount === (currentQuestion + 1) && infoMode) _buttonTxt = "Finish Quiz";
             
             var _button = '<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" id="nextQuestion">  <i class="material-icons">keyboard_arrow_right</i></button>';;
 
             _form.push(_question);
+            _form.push('<div id="questionDiv" class="mdl-cell--12-col mdl-cell--12-col-tablet">');
 
             $.each($answers, function (index, object) {
 
                 var _answer = ['<div class="radio">', '<label>',
-                    '<input type="radio" name="quizAnswer" required value="' + object.score + '">',
+                    '<input type="radio"  class="mdl-radio__button" name="quizAnswer" required value="' + object.score + '">',
                 object.answer, '</label>', '</div>'];
 
                 _form.push(_answer.join('\n'));
             });
-
+            _form.push('</div>');
             _form.push(_button);
             _form.push('</form>');
 
