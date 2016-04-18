@@ -36,14 +36,14 @@ Proyecto sin ánimo de lucro. Este juego tiene el único objetivo de hacer una p
 **********************
 
 ###Objetivos por cumplir
-* acceso de usuarios
-* base de datos
+
+*
+
 * guardar datos en cookie mientras no exista bbdd
 * terminar css
 * terminar módulo de avión
-* implementar tests 2 y 3
-* implementar cambio de nivel
 * cambiar estadisticas por reales
+* base de datos
 
 ***********************
 

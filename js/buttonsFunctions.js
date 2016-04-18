@@ -8,6 +8,8 @@ $("#rankingButton").click(function () {
 
 $("#goTestButton").click(function () {
     $(".sectionDiv").hide();
+    //initJQuiz();
+    $(".startTestDiv").show();
     $("#testDiv").show();
 
 });
@@ -25,11 +27,11 @@ $("#startTestButton").click(function () {
 });
 
 $("#loginButton").click(function(){
-    if($("#pass-expandable").val() == "helloworld"){
+    //if($("#pass-expandable").val() == "helloworld"){
         $("#loginDiv").hide();
         $("#startDiv").show();
-        $("#userNameSpan").text($("#user-expandable").val());
-    }
+        //$("#userNameSpan").text($("#user-expandable").val());
+    //}
 
 });
 

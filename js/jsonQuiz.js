@@ -3,25 +3,30 @@
          Date: 11/03/2015
        Author: Matthew D Webb
       Website: http://www.searchlaboratory.com/
-  Description: json quiz score calculator
- Dependencies: JQuery 2.1.0 (cdn here: https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js)
-         Demo: https://jsfiddle.net/Webby2014/t4p8x02b/
+
+     Modified by Dani Artola to set new functions and allow to change between tests
  */
 
-(function ($, undefined) {
+
+
+
+
+function initJQuiz(){
 
     'use strict';
 
     // GLOBAL:
     var $placeHolder = $('#quiz'),
         loadingGif = 'images/loading.gif',
-        dataSource = 'test1.json',
+        dataSource = 'test',
         currentQuestion = 0,
         questionCount = 0,
         answerArray = [],
         passed = false,
         infoMode = false,
         gotData = false,
+        score = 0,
+        testScore = 0,
         inMemoryData = {};
 
     // QUIZ LOGIC:
@@ -29,20 +34,17 @@
 
         // private methods:
         var getQuizData = function (url) {
-
-            var promise = $.getJSON(url);
+            var promise = $.getJSON(url + currentUserLvl + ".json");
             return promise;
         };
 
         var getScore = function () {
-
-            var score = 0;
-            
-            console.log(answerArray.length);
-
+            score = 0;
             $(answerArray).each(function (index, object) {
                 score += parseInt(object[0].value, 10);
             });
+
+            testScore = score;
             return score;
         };
 
@@ -51,46 +53,34 @@
         };
 
         var getHTML = function (data, currentQuestion) {
-
-            console.log("current question: " + currentQuestion + " info mode: " + infoMode);
-            
             var content, complete = true;
-
             $(data).each(function (index, object) {
-
                 $(object.questions).each(function (index, object) {
-                  /**  if (infoMode) {
-                        if (currentQuestion === index) {
-                           
-                            infoMode = (!object.includeInfo);
-                            complete = false;
-                            content = infoHTML(object.info);
-                        } 
-                    } else {**/
-                        if (currentQuestion === index) {
-                           
-                            complete = false;
-                            content = questionHTML(object.question, object.answers);
-                            if (object.includeInfo) infoMode = true;
-                        }
-                    //}
+                    if (currentQuestion === index) {
+                        complete = false;
+                        content = questionHTML(object.question, object.answers);
+                        if (object.includeInfo) infoMode = true;
+                    }
                 });
             });
             if (complete) {
-                //get result content
-                content = resultHTML();
+
                 //stop timer
                 $("#timerDiv").parent().hide();
-
+                var testPassed = false;
                 $("#test1Div h2").text("Resultado del Test");
-                var score = getScore();
+                console.log(score + " test resultado");
+                if(testScore >= 5){
+                    $(".planeAnimation").hide();
+                    upgradeLvl();
+                    $("#planeAnimation"+currentUserLvl).show();
+                    testPassed = true;
 
-                if(score >= 5){
-                    passed = true;
                 } else {
-                    passed = false
+                    passed = false;
+                    testPassed = false;
                 }
-
+                content = resultHTML();
             }
             return content;
         };
@@ -109,13 +99,9 @@
         // ITERATION LOGIC:
 
         var next = function ($this) {
-
-//            if (infoMode) {
-                var userAnswer = $($this).serializeArray();
-                updateScore(userAnswer);
-    //        } else {
-                currentQuestion++;
-        //    }
+             var userAnswer = $($this).serializeArray();
+             updateScore(userAnswer);
+             currentQuestion++;
         };
 
         // DISPLAY RENDERING:
@@ -123,20 +109,40 @@
         // final message
         var resultHTML = function () {
 
-            var score = getScore();
+            score = getScore();
             var message = resultMessage(score);
+
+            if(score >= 5){
+                $(".planeAnimation").hide();
+                $("#planeAnimation"+currentUserLvl).show();
+                upgradeLvl();
+                var colorForIcon = 'green';
+                var iconName = 'thumb_up';
+                var button = '<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" id="nextTest">Siguiente Test</button>';
+
+            } else {
+                passed = false;
+                var colorForIcon = 'green';
+                var iconName = 'thumb_up';
+                var button = '<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" id="nextTest">Siguiente Test</button>';
+            }
+
+
             var _result = [];
 	        $("#timerDiv").timer('pause');
             // result html after test result
 
             _result.push('<div id="" class="mdl-cell--12-col mdl-cell--12-col-tablet">');
-            _result.push('<h3> Test finalizado </h3>');
+            _result.push('<h3> Test finalizado' +
+                    ' <i class="material-icons" style="color:' + colorForIcon + ';">' + iconName + '</i>'+
+                ' </h3>');
             _result.push('<h4>' + message.title + '</h4>');
             _result.push('<p>' + message.description + '</p>');
-//            _result.push('<div><img src="' + message.image + '"/></div>');
             _result.push('<p>Puntuación: ' + score + '</p>');
             _result.push('<p>Tiempo: ' + $("#timerDiv").text() + '</p>');
             _result.push('<p>Total de preguntas: ' + questionCount + '</p>');
+            _result.push('</br>');
+            _result.push(button);
             _result.push('</div>');
             return _result.join('\n');
         };
@@ -151,21 +157,6 @@
             });
             return message;
         };
-        // infomation rendering (after each question)
-        var infoHTML = function (introStr) {
-           /** var _info = [];
-
-            var _buttonTxt = 'Next Question';        
-            if (questionCount  === (currentQuestion + 1)) _buttonTxt = 'Finish Quiz';
-
-            var button = '<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" id="nextQuestion">  <i class="material-icons">keyboard_arrow_right</i></button>';
-            _info.push('<form id="quizForm">');
-            _info.push('<p>' + introStr + '</p>');
-            _info.push(button);
-            _info.push('</form>');
-
-            return _info.join('\n');**/
-        };
         // question rendering
         var questionHTML = function (questionStr, $answers) {
 
@@ -173,9 +164,7 @@
             var _question = '<div id="questionDiv" class="mdl-cell--12-col mdl-grid mdl-cell--12-col-tablet"><p>' + questionStr + '</p></div>';
             var _buttonTxt = 'next';
             if(questionCount === (currentQuestion + 1) && infoMode) _buttonTxt = "Finish Quiz";
-            
             var _button = '<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" id="nextQuestion">  <i class="material-icons">keyboard_arrow_right</i></button>';;
-
             _form.push(_question);
             _form.push('<div id="questionDiv" class="mdl-cell--12-col mdl-cell--12-col-tablet">');
 
@@ -203,24 +192,21 @@
 
             // get json
             var requestData = getQuizData(dataSource).then(function (data) {
-
                 // take a count of the number of questions:
                 questionCount = data[0].questions.length;
-
                 // handles in memory json:
                 gotData = true;
                 inMemoryData = data;
-
                 return data;
             });
 
             // show question
             if (gotData) {
 
-                //setTimeout(function () { // unrequired timer.
+                setTimeout(function () { // unrequired timer.
                     var content = getHTML(inMemoryData, currentQuestion);
                     return $placeHolder.html(content);
-                //}, 200);
+                }, 200);
 
             } else {
 
@@ -247,4 +233,4 @@
     quiz().init();
     quiz().bindSubmit();
 
-}(jQuery));
+}
