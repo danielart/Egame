@@ -122,9 +122,9 @@ function initJQuiz(){
 
             } else {
                 passed = false;
-                var colorForIcon = 'green';
-                var iconName = 'thumb_up';
-                var button = '<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" id="nextTest">Siguiente Test</button>';
+                var colorForIcon = 'red';
+                var iconName = 'thumb_down';
+                var button = '<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" id="repeatTest">Repetir Test</button>';
             }
 
 
