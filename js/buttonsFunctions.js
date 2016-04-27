@@ -26,13 +26,28 @@ $("#startTestButton").click(function () {
     $('#timerDiv').timer();
 });
 
+
+
+$("#repeatTest").click(function() {
+
+});
+$("#test1Div").on("click", "#nextTest",function() {
+    upgradeLvl();
+    $("#quiz").empty();
+    initJQuiz();
+    $(".startTestDiv").show();
+    $("#test1Div").hide();
+    $('#timerDiv').timer();
+});
+
 $("#loginButton").click(function(){
     //if($("#pass-expandable").val() == "helloworld"){
-        $("#loginDiv").hide();
-        $("#startDiv").show();
-        //$("#userNameSpan").text($("#user-expandable").val());
+    $("#loginDiv").hide();
+    $("#startDiv").show();
+    //$("#userNameSpan").text($("#user-expandable").val());
     //}
 
 });
+
 
 
