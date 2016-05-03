@@ -281,6 +281,9 @@ _:-ms-input-placeholder, :root .demo-graph {
     overflow: hidden;
 }
 
+#lvlNumberSpan{
+    margin-left: 9px;
+}
 
 
 /** css for plane div **/

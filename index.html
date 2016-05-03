@@ -53,7 +53,7 @@
 
 </head>
 <body>
-<dialog class="mdl-dialog mdl-dialog-medium">
+<dialog class="mdl-dialog mdl-dialog-medium demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-offset-desktop mdl-cell--7-col  mdl-cell--0-offset-tablet mdl-cell--12-col-tablet">
     <h4 class="mdl-dialog__title">Instrucciones</h4>
 
     <div class="mdl-dialog__content ">
@@ -89,6 +89,8 @@
         </button>
     </div>
 </dialog>
+
+
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="egame-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
@@ -147,6 +149,11 @@
         </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
+        <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+            <div class="mdl-snackbar__text"></div>
+            <button class="mdl-snackbar__action" type="button"></button>
+        </div>
+
         <div class="mdl-grid demo-content">
             <div id="homeDiv" class="sectionDiv  mdl-cell--12-col mdl-grid mdl-cell--12-col-tablet">
                 <div id="loginDiv" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-offset-desktop mdl-cell--7-col  mdl-cell--0-offset-tablet mdl-cell--12-col-tablet">
@@ -180,6 +187,11 @@
 
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
+                        <div id="demo-snackbar-example" class="mdl-js-snackbar mdl-snackbar">
+                            <div class="mdl-snackbar__text"></div>
+                            <button class="mdl-snackbar__action" type="button"></button>
+                        </div>
+
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect mdl-cell--4-offset mdl-cell--4-col mdl-cell--4-col-tablet" id="loginButton">
                             Iniciar sesión
                         </button>
@@ -219,12 +231,24 @@
             </div>
 
             <div id="testDiv" class="sectionDiv  mdl-cell--12-col mdl-grid mdl-cell--12-col-tablet">
+
+                <!--<div class="startTestDiv demo-charts mdl-color&#45;&#45;white mdl-shadow&#45;&#45;2dp mdl-cell mdl-cell&#45;&#45;12-col mdl-grid mdl-cell&#45;&#45;12-col-tablet">-->
+                    <!--<div class="mdl-card__title mdl-card&#45;&#45;expand">-->
+                        <!--<h3 class="mdl-card__title-text">¡Felicidades!</h3>-->
+                    <!--</div>-->
+                    <!--<div class="mdl-card__supporting-text">-->
+                        <!--Has subido de nivel, ahora podrás empezar los tests del nivel <span  class="currentLevel"></span>-->
+                    <!--</div>-->
+                    <!--<div class="mdl-card__actions mdl-card&#45;&#45;border">                       -->
+                    <!--</div>-->
+                <!--</div>-->
+
                 <div class="startTestDiv demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid mdl-cell--12-col-tablet">
                     <div class="mdl-card__title mdl-card--expand">
-                        <h3 class="mdl-card__title-text">Nivel <span id="lvlNumberSpan" class="levelNumber">1</span></h3>
+                        <h3 class="mdl-card__title-text">Nivel <span id="lvlNumberSpan" class="currentLevel"></span></h3>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        Estas a 1 test de pasar al siguiente nivel. Para ello deberás superar un mínimo de 8 preguntas. ¿Empezamos?
+                        Estas a un solo test de pasar al siguiente nivel. Para ello deberás superar un mínimo de 5 preguntas. ¿Empezamos?
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" id="startTestButton">
@@ -387,7 +411,6 @@
     </main>
 
 </div>
-
 <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
 <script src="js/logicFunctions.js"></script>
 <script src="js/jsonQuiz.js"></script>

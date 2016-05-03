@@ -53,6 +53,7 @@ $("#loginButton").click(function(){
     $("#startDiv").show();
     //$("#userNameSpan").text($("#user-expandable").val());
     //}
+    showDialog();
 
 });
 
