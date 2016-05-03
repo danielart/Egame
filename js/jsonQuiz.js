@@ -35,6 +35,7 @@ function initJQuiz(){
         // private methods:
         var getQuizData = function (url) {
             var promise = $.getJSON(url + currentUserLvl + ".json");
+            console.log(url + currentUserLvl + ".json");
             return promise;
         };
 
@@ -72,9 +73,9 @@ function initJQuiz(){
                 console.log(score + " test resultado");
                 if(testScore >= 5){
                     $(".planeAnimation").hide();
-                    upgradeLvl();
                     $("#planeAnimation"+currentUserLvl).show();
                     testPassed = true;
+
 
                 } else {
                     passed = false;

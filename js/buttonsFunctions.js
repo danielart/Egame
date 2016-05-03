@@ -20,22 +20,29 @@ $("#homeButton").click(function () {
 });
 
 $("#startTestButton").click(function () {
-    /** timer rules and functions **/
+
+    $(".planeAnimation").hide();
     $(".startTestDiv").hide();
     $("#test1Div").show();
     $('#timerDiv').timer();
 });
 
-
-
-$("#repeatTest").click(function() {
-
-});
 $("#test1Div").on("click", "#nextTest",function() {
-    upgradeLvl();
+
     $("#quiz").empty();
     initJQuiz();
     $(".startTestDiv").show();
+    $(".planeAnimation").hide();
+    $("#test1Div").hide();
+    $('#timerDiv').timer();
+});
+
+$("#test1Div").on("click", "#repeatTest",function() {
+
+    $("#quiz").empty();
+    initJQuiz();
+    $(".startTestDiv").show();
+    $(".planeAnimation").hide();
     $("#test1Div").hide();
     $('#timerDiv').timer();
 });
